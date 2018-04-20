@@ -1,0 +1,23 @@
+{
+  "name": "@pedromsilva/data-cancel-token",
+  "version": "0.5.0",
+  "description": "Simple TypeScript/ES2015 class to emulate cancellation tokens",
+  "main": "./lib/CancelToken.js",
+  "types": "./lib/CancelToken.d.ts",
+  "repository": "pedromsilvapt/data-cancel-token",
+  "keywords": [
+    "js",
+    "cancellation",
+    "cancel token",
+    "async",
+    "promises"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedro M. Silva <pemiolsi@hotmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@pedromsilva/data-future": "^1.0.0"
+  }
+}
