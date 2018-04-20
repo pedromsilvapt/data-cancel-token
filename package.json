@@ -1,6 +1,6 @@
 {
-  "name": "@pedromsilva/data-cancel-token",
-  "version": "0.5.0",
+  "name": "data-cancel-token",
+  "version": "0.5.1",
   "description": "Simple TypeScript/ES2015 class to emulate cancellation tokens",
   "main": "./lib/CancelToken.js",
   "types": "./lib/CancelToken.d.ts",

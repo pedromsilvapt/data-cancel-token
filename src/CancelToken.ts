@@ -2,7 +2,7 @@ import { Future } from '@pedromsilva/data-future';
 
 export class CancelledError extends Error { }
 
-class CancelToken {
+export class CancelToken {
     readonly cancellationRequested: boolean;
 
     readonly canBeCanceled: boolean = true;
