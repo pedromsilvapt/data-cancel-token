@@ -13,11 +13,15 @@
     "promises"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc -p tsconfig.json",
+    "watch": "npx tsc -w -p tsconfig.json"
   },
   "author": "Pedro M. Silva <pemiolsi@hotmail.com>",
   "license": "ISC",
   "dependencies": {
     "@pedromsilva/data-future": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
