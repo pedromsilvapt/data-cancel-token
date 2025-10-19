@@ -1,4 +1,4 @@
-import { Future } from '@pedromsilva/data-future';
+import {Future} from '@pedromsilva/data-future';
 
 export class CancelledError extends Error {
     public readonly token: CancelToken;
@@ -51,4 +51,17 @@ export class CancelToken {
         }
     }
 
+    public static none: CancelToken = new CancelToken(false);
+
+    public static timeout(duration: number) {
+        const token = new CancelToken();
+
+        const timeout = setTimeout(() => token.cancel(), duration);
+
+        token.cancellationPromise.catch(() => {
+            clearTimeout(timeout);
+        });
+
+        return token;
+    }
 }
