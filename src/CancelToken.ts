@@ -11,15 +11,27 @@ export class CancelledError extends Error {
 }
 
 export class CancelToken {
-    readonly cancellationRequested: boolean;
+    private _cancellationRequested: boolean = false;
+
+    private readonly _canBeCancelled: boolean = false;
 
     readonly canBeCanceled: boolean = true;
 
-    protected readonly cancellationFuture : Future<void>;
+    protected readonly cancellationFuture: Future<void>;
 
-    readonly cancellationPromise : Promise<void>;
+    readonly cancellationPromise: Promise<void>;
 
-    constructor () {
+    get cancellationRequested(): boolean {
+        return this._cancellationRequested;
+    }
+
+    get canBeCancelled(): boolean {
+        return this._canBeCancelled;
+    }
+
+    constructor(canBeCancelled: boolean = true) {
+        this._canBeCancelled = canBeCancelled;
+
         this.cancellationFuture = new Future();
 
         this.cancellationPromise = this.cancellationFuture.promise;
@@ -31,7 +43,12 @@ export class CancelToken {
         }
     }
 
-    cancel () {
-        ( this as any ).cancellationRequested = true;
+    cancel() {
+        if (this.canBeCanceled && !this._cancellationRequested) {
+            this._cancellationRequested = true;
+
+            this.cancellationFuture.reject(new CancelledError(this));
+        }
     }
+
 }
