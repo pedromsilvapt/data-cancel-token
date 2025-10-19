@@ -1,6 +1,14 @@
 import { Future } from '@pedromsilva/data-future';
 
-export class CancelledError extends Error { }
+export class CancelledError extends Error {
+    public readonly token: CancelToken;
+
+    constructor(token: CancelToken) {
+        super("Operation has been cancelled");
+
+        this.token = token;
+    }
+}
 
 export class CancelToken {
     readonly cancellationRequested: boolean;
@@ -17,9 +25,9 @@ export class CancelToken {
         this.cancellationPromise = this.cancellationFuture.promise;
     }
 
-    throwIfCancellationRequested () : void {
-        if ( this.cancellationRequested ) {
-            throw new CancelledError();
+    throwIfCancellationRequested(): void {
+        if (this.cancellationRequested) {
+            throw new CancelledError(this);
         }
     }
 
